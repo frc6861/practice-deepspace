@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -49,6 +50,8 @@ public class Robot extends TimedRobot {
         m_oi = new OI();
         m_oi.init();
         driveTrain=new DriveTrain(m_oi);
+        CameraServer.getInstance().startAutomaticCapture();
+
         //SmartDashboard.putData("Auto mode", m_chooser);
         SmartDashboard.putNumber("Elevator Height", elevator.getElevatorHeight());
         //m_chooser.addOption("DeployHatchAuton","DeployHatchAuton");
