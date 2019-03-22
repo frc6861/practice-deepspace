@@ -39,7 +39,7 @@ public class MoveElevator extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        //System.out.println("ENCODER: " + elevator.elevatorMotor.getSensorCollection().getQuadraturePosition());
+        System.out.println("ENCODER: " + elevator.elevatorMotor.getSensorCollection().getQuadraturePosition());
         if (oi.getButtonX2()) {
             if (!bottomSwitch.get()) {
                 elevator.setPower(0.0);

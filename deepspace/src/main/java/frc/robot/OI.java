@@ -12,15 +12,14 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.AutonOverRide;
 import frc.robot.commands.DeployBall; //LEAVE THIS, IT IS A SURPRISE TOOL THAT WILL HELP US LATER
 import frc.robot.commands.DownIngestor;
-import frc.robot.commands.GoElevator;
 import frc.robot.commands.HatchUp;
-import frc.robot.commands.HatchUpTimed;
 import frc.robot.commands.KickBall;
 import frc.robot.commands.KickBallBack;
 import frc.robot.commands.MoveElevator;
 import frc.robot.commands.RunIngestor;
 import frc.robot.commands.UpIngestor;
 import frc.robot.subsystems.BallKicker;
+import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.HatchPusher;
 import frc.robot.subsystems.Ingestor;
 import frc.robot.commands.PositionElevator;
@@ -131,7 +130,7 @@ public class OI {
     //buttonClickLeft2.whenReleased(new MoveElevator(this, 0));
     //buttonClickRight2.whenReleased(new MoveElevator(this, 0));
     //buttonB2.whenPressed(new MoveElevator(elevator,"3")); //ballLowRocketShip
-    //buttonLB2.whenPressed(new PositionElevator(elevator, ElevatorPosition.HATCHMIDROCKETSHIP)); //hatchMidRocketShip
+    //buttonLB2.whenPressed(new PositionElevator(this,ElevatorPosition.HATCHMIDROCKETSHIP)); //hatchMidRocketShip
     //buttonLT2.whenPressed(new PositionElevator(elevator, ElevatorPosition.BALLMIDROCKETSHIP)); //ballMidRocketShip
     //buttonRT2.whenPressed(new PositionElevator(elevator, ElevatorPosition.HATCHMIDROCKETSHIP)); //hatchTopRocketShip
     //buttonRB2.whenPressed(new PositionElevator(elevator, ElevatorPosition.BALLTOPROCKETSHIP)); //ballTopRocketShip

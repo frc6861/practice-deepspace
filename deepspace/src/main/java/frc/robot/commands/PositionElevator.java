@@ -17,7 +17,8 @@ public class PositionElevator extends Command {
 
     public PositionElevator(Elevator elevator, ElevatorPosition ballcargoship) {
         this.elevator = elevator;
-        this.position = position;
+        this.position = ballcargoship.getPosition();
+        //elevator.setElevatiorHeight(position);
         // requires(driveTrain);
     }
 
@@ -30,14 +31,23 @@ public class PositionElevator extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        elevator.setElevatiorHeight(position);
+
+        System.out.println("position:"+position);
+        System.out.println("calculated"+((position +15)-11)*206);
+        System.out.println("actual"+ elevator.getElevatorHeight());
+        elevator.setPower(0.3);
 
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return false;
+
+        boolean test=(Math.abs(-elevator.getElevatorHeight()-((position +15)-11)*206)<.0001);
+        if(test)
+        elevator.setPower(0);
+       
+        return (Math.abs(-elevator.getElevatorHeight()-((position +15)-11)*206)<.0001);
     }
 
     // Called once after isFinished returns true
