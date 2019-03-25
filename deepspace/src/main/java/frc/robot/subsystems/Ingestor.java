@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.DigitalInput;
 
 public class Ingestor extends Subsystem {
   private WPI_TalonSRX leftIngestor;
@@ -19,6 +20,7 @@ public class Ingestor extends Subsystem {
     private Compressor compressor=new Compressor(0);
 
     private DoubleSolenoid solenoidW=new DoubleSolenoid(0, 1);
+    private DigitalInput ir = new DigitalInput(1);//FIGURE OUT THIS PORT AHHHHHHHHHHHHHHHHH-Ethan
     
     
   public Ingestor(){
@@ -64,6 +66,14 @@ public class Ingestor extends Subsystem {
         //System.out.println("Running ingestor motors..."+speed);
         leftIngestor.set(speed);
         rightIngestor.set(-speed);
+        if(speed == -1 && !ir.get()){
+          leftIngestor.set(0);
+        rightIngestor.set(0);  
+        }
+        else{
+        leftIngestor.set(speed);
+        rightIngestor.set(-speed);
+    }
     }
     
 }
