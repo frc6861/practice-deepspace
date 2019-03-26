@@ -64,8 +64,6 @@ public class Ingestor extends Subsystem {
 
     public void driveMotors(double speed){
         //System.out.println("Running ingestor motors..."+speed);
-        leftIngestor.set(speed);
-        rightIngestor.set(-speed);
         if(speed == -1 && !ir.get()){
           leftIngestor.set(0);
         rightIngestor.set(0);  
