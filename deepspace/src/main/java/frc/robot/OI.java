@@ -9,8 +9,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.auton.CargoAutoAlignment;
-import frc.robot.auton.HatchAutoAlignment;
 import frc.robot.commands.AutonOverRide;
 import frc.robot.commands.DeployBall; //LEAVE THIS, IT IS A SURPRISE TOOL THAT WILL HELP US LATER
 import frc.robot.commands.DownIngestor;
@@ -128,8 +126,8 @@ public class OI {
     buttonX2.whenReleased(new MoveElevator(this, 0));//ballCargoShip
     buttonY2.whenReleased(new MoveElevator(this, 0));
 
-    buttonClickLeft2.whileHeld(new HatchAutoAlignment(this, Robot.driveTrain));
-    buttonClickRight2.whileHeld(new CargoAutoAlignment(this, Robot.driveTrain));
+    //buttonClickLeft2.whileHeld(new HatchAutoAlignment(this, Robot.driveTrain));
+    //buttonClickRight2.whileHeld(new CargoAutoAlignment(this, Robot.driveTrain));
     
     //buttonClickLeft2.whenReleased(new MoveElevator(this, 0));
     //buttonClickRight2.whenReleased(new MoveElevator(this, 0));
