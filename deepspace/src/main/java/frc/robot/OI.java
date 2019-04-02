@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.AutonOverRide;
+import frc.robot.commands.ClimbSequence;
 import frc.robot.commands.DeployBall; //LEAVE THIS, IT IS A SURPRISE TOOL THAT WILL HELP US LATER
 import frc.robot.commands.DownIngestor;
 import frc.robot.commands.HatchUp;
@@ -115,9 +116,11 @@ public class OI {
     //rotate left 90 deg
     //buttonClickRight1.whenPressed(new ClockwiseTurn(0.26, driveTrain)); //rotate right 90 deg*/
     buttonA2.whenPressed(new PositionElevator(Robot.elevator, ElevatorPosition.BALLLOWROCKETSHIP));
-    buttonB2.whenPressed(new PositionElevator(Robot.elevator, ElevatorPosition.BALLCARGOSHIP));
-    buttonRB2.whenPressed(new PositionElevator(Robot.elevator, ElevatorPosition.BALLMIDROCKETSHIP));
-    buttonRT2.whileActive(new PositionElevator(Robot.elevator, ElevatorPosition.BALLTOPROCKETSHIP));
+    //buttonB2.whenPressed(new PositionElevator(Robot.elevator, ElevatorPosition.BALLCARGOSHIP));
+    //buttonRB2.whenPressed(new PositionElevator(Robot.elevator, ElevatorPosition.BALLMIDROCKETSHIP));
+    //buttonRT2.whileActive(new PositionElevator(Robot.elevator, ElevatorPosition.BALLTOPROCKETSHIP));
+    
+    buttonLT2.whenPressed(new ClimbSequence(2, 2));
 
     buttonBack2.whenPressed(new HatchUp(hatch, 0.25)); //deploy hatch 
     buttonStart2.whenPressed(new HatchUp(hatch, -0.25)); //shoot ball   */
