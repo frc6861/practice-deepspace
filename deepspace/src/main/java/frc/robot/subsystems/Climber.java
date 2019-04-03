@@ -9,9 +9,8 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Spark;
 /**
  * Add your docs here.
  */
@@ -19,12 +18,11 @@ public class Climber extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  private WPI_TalonSRX climbMotor;
-  private Solenoid climbSolenoid;
+  private Spark climbMotor;
+  private DoubleSolenoid climbSolenoid=new DoubleSolenoid(6, 7);
 
   public Climber() {
-      climbMotor = new WPI_TalonSRX(14); 
-      climbSolenoid = new Solenoid(4);
+      climbMotor = new Spark(0); 
   }
   
   @Override
@@ -34,11 +32,11 @@ public class Climber extends Subsystem {
   }
 
   public void extendClimb(){
-      climbSolenoid.set(true);
+      climbSolenoid.set(DoubleSolenoid.Value.kForward);
   }
 
   public void retractClimb(){
-      climbSolenoid.set(false);
+      climbSolenoid.set(DoubleSolenoid.Value.kReverse);
   }
 
   public void climb(double speed) {

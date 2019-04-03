@@ -6,12 +6,10 @@ import frc.robot.subsystems.Climber;
 import edu.wpi.first.wpilibj.Solenoid;
 
 public class RetractClimbSol extends TimedCommand {
-private Climber climber;
 private Solenoid climbSolenoid;
 private OI m_oi;
-public RetractClimbSol(double timeout, Climber climber) {
+public RetractClimbSol(double timeout) {
 super(timeout);
-this.climber = climber;
 }
 
 // Called just before this Command runs the first time

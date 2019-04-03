@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.auton.DeployBallAuton;
 import frc.robot.auton.DeployHatchAuton;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Elevator;
 
@@ -31,13 +32,14 @@ public class Robot extends TimedRobot {
     private static final String kCustomAuto = "My Auto";
     private String m_autoSelected;
     private final SendableChooser<String> m_chooser = new SendableChooser<>();
-    private DriveTrain driveTrain;
     private OI m_oi;
     private Command m_autonomousCommand;
     public static Elevator elevator = new Elevator();
+    public static Climber climber;
     public static DigitalInput topLimitSwitch;
     public static DigitalInput bottomLimitSwitch;
-
+    public static DigitalInput climbLimitSwitch;
+    public static DriveTrain driveTrain;
 
     /**
      * This function is run when the robot is first started up and should be used
@@ -47,17 +49,21 @@ public class Robot extends TimedRobot {
     public void robotInit() {
         topLimitSwitch = new DigitalInput(1);
         bottomLimitSwitch = new DigitalInput(0);
+        climbLimitSwitch = new DigitalInput(3);
         m_oi = new OI();
         m_oi.init();
-        driveTrain=new DriveTrain(m_oi);
+        driveTrain = new DriveTrain(m_oi);
+        climber = new Climber();
+        //setDriveTrain(new DriveTrain(m_oi));
         CameraServer.getInstance().startAutomaticCapture(0);
         if(m_oi.getButtonBack1())
             CameraServer.getInstance().removeCamera(CameraServer.getInstance().startAutomaticCapture(0).getName());
         SmartDashboard.putNumber("Elevator Height", elevator.getElevatorHeight());
     }
 
-    
-    /**
+
+
+	/**
      * This function is called every robot packet, no matter the mode. Use this for
      * items like diagnostics that you want ran during disabled, autonomous,
      * teleoperated and test.

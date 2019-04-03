@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
 
+import frc.robot.Robot;
 import frc.robot.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.command.TimedCommand;
@@ -9,13 +10,10 @@ import edu.wpi.first.wpilibj.command.TimedCommand;
  *
  */
 public class RunFrontMotors extends TimedCommand {
-    private DriveTrain driveTrain;
     private double speed;
-    public RunFrontMotors(double RFMtimeout, DriveTrain driveTrain, double speed) {
+    public RunFrontMotors(double RFMtimeout, double speed) {
     	 super (RFMtimeout);
-        this.driveTrain=driveTrain;
         this.speed=speed;
-    	 requires(driveTrain);
     }
 
     // Called just before this Command runs the first time
@@ -24,7 +22,7 @@ public class RunFrontMotors extends TimedCommand {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-			driveTrain.setMecanumDriveCommand(speed, 0, 0, 0); //used to be 0.5
+			Robot.driveTrain.setMecanumDriveCommand(0, speed, 0, 0); //used to be 0.5
     	
     }
 

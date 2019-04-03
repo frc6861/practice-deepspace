@@ -10,16 +10,20 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.AutonOverRide;
+import frc.robot.commands.ClimbPiston;
+import frc.robot.commands.ClimbPistonBack;
 import frc.robot.commands.ClimbSequence;
 import frc.robot.commands.DeployBall; //LEAVE THIS, IT IS A SURPRISE TOOL THAT WILL HELP US LATER
 import frc.robot.commands.DownIngestor;
 import frc.robot.commands.HatchUp;
 import frc.robot.commands.KickBall;
 import frc.robot.commands.KickBallBack;
+import frc.robot.commands.MoveClimber;
 import frc.robot.commands.MoveElevator;
 import frc.robot.commands.RunIngestor;
 import frc.robot.commands.UpIngestor;
 import frc.robot.subsystems.BallKicker;
+import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.HatchPusher;
 import frc.robot.subsystems.Ingestor;
@@ -37,8 +41,9 @@ public class OI {
   private HatchPusher hatch = new HatchPusher();
   private Ingestor ingestor =new Ingestor();
   private BallKicker ballKicker = new BallKicker();
+  private DriveTrain driveTrain;
   public OI(){
-    
+    driveTrain = Robot.driveTrain;
     gamePad1 = new XboxController(0);
     gamePad2 = new XboxController(1);
     buttonA1 = new JoystickButton(gamePad1,1);//Run ingestor inward
@@ -98,6 +103,11 @@ public class OI {
       return gamePad1.getRawAxis(3);
   }
 
+  public double getLT1(){
+    return gamePad1.getRawAxis(2);
+}
+
+
   public void init() {
 
     buttonX1.whileHeld(new UpIngestor(ingestor)); //put ingestor back UP
@@ -110,6 +120,8 @@ public class OI {
     buttonBack1.whileHeld(new AutonOverRide(this));
     buttonStart1.whenPressed(new KickBall(1,ballKicker, this));
     buttonStart1.whenReleased(new KickBallBack(1,ballKicker, this));
+    buttonB1.whenPressed(new ClimbPiston(0.1, this));
+    buttonB1.whenReleased(new ClimbPistonBack(0.1, this));
     //buttonLB1.whileHeld(new RunKicker(0.5));
     //buttonRB1.whileHeld(new RunKicker(-0.5));
     //buttonClickLeft1.whenPressed(new DeployBall(0.2,2)); //UNCOMMENT THIS AND FIX PARAMETERS!!
@@ -119,8 +131,11 @@ public class OI {
     //buttonB2.whenPressed(new PositionElevator(Robot.elevator, ElevatorPosition.BALLCARGOSHIP));
     //buttonRB2.whenPressed(new PositionElevator(Robot.elevator, ElevatorPosition.BALLMIDROCKETSHIP));
     //buttonRT2.whileActive(new PositionElevator(Robot.elevator, ElevatorPosition.BALLTOPROCKETSHIP));
-    
-    buttonLT2.whenPressed(new ClimbSequence(2, 2));
+    buttonLB2.whileHeld(new MoveClimber(this, -0.5));
+    buttonRB2.whileHeld(new MoveClimber(this, 0.5));
+    // buttonLB2.whenReleased(new MoveClimber(this, 0));
+    // buttonRB2.whenReleased(new MoveClimber(this, 0));
+    buttonB2.whenPressed(new ClimbSequence(4, 0.3));
 
     buttonBack2.whenPressed(new HatchUp(hatch, 0.25)); //deploy hatch 
     buttonStart2.whenPressed(new HatchUp(hatch, -0.25)); //shoot ball   */

@@ -7,37 +7,31 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.command.TimedCommand;
+import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.OI;
 import frc.robot.Robot;
-import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.DriveTrain;
 
-public class RunClimbMotor extends TimedCommand {
-    private double climberSpeed;
-    private DigitalInput climbSwitch;
+public class MoveClimber extends Command {
+    private double speed;
+    private DriveTrain driveTrain;
+    private OI oi;
 
-    public RunClimbMotor(double RCMtimeout,double climberSpeed) {
-        super(RCMtimeout);
-
-        this.climberSpeed=climberSpeed;
-        climbSwitch = Robot.climbLimitSwitch;
-
+    public MoveClimber(OI m_oi, double speed) {
+        this.oi = m_oi;
+        this.speed = speed;
     }
-
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
+        System.out.print("Initializing Drive Command");
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        while(climbSwitch.get()==false){
-        Robot.climber.climb(climberSpeed);
-        }
-        while(climbSwitch.get()==true){
-            Robot.climber.climb(climberSpeed);
-        }
+        Robot.climber.climb(speed);
+        // System.out.println("Driving!!!");
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -50,7 +44,6 @@ public class RunClimbMotor extends TimedCommand {
     @Override
     protected void end() {
         Robot.climber.climb(0);
-
     }
 
     // Called when another command which requires one or more of the same
