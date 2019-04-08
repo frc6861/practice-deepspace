@@ -35,7 +35,6 @@ public class Robot extends TimedRobot {
     private OI m_oi;
     private Command m_autonomousCommand;
     public static Elevator elevator = new Elevator();
-    public static Climber climber;
     public static DigitalInput topLimitSwitch;
     public static DigitalInput bottomLimitSwitch;
     public static DigitalInput climbLimitSwitch;
@@ -53,7 +52,7 @@ public class Robot extends TimedRobot {
         m_oi = new OI();
         m_oi.init();
         driveTrain = new DriveTrain(m_oi);
-        climber = new Climber();
+        //climber = new Climber();
         //setDriveTrain(new DriveTrain(m_oi));
         CameraServer.getInstance().startAutomaticCapture(0);
         if(m_oi.getButtonBack1())

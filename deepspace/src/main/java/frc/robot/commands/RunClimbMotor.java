@@ -15,10 +15,11 @@ import frc.robot.subsystems.Climber;
 public class RunClimbMotor extends TimedCommand {
     private double climberSpeed;
     private DigitalInput climbSwitch;
+    private Climber climber;
 
-    public RunClimbMotor(double RCMtimeout,double climberSpeed) {
+    public RunClimbMotor(double RCMtimeout,double climberSpeed, Climber climber) {
         super(RCMtimeout);
-
+        this.climber = climber;
         this.climberSpeed=climberSpeed;
         climbSwitch = Robot.climbLimitSwitch;
 
@@ -33,10 +34,10 @@ public class RunClimbMotor extends TimedCommand {
     @Override
     protected void execute() {
         while(climbSwitch.get()==false){
-        Robot.climber.climb(climberSpeed);
+        climber.climb(climberSpeed);
         }
         while(climbSwitch.get()==true){
-            Robot.climber.climb(climberSpeed);
+            climber.climb(climberSpeed);
         }
     }
 
@@ -49,7 +50,6 @@ public class RunClimbMotor extends TimedCommand {
     // Called once after isFinished returns true
     @Override
     protected void end() {
-        Robot.climber.climb(0);
 
     }
 

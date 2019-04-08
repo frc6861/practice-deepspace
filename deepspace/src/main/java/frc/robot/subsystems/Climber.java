@@ -19,7 +19,7 @@ public class Climber extends Subsystem {
   // here. Call these from Commands.
 
   private Spark climbMotor;
-  private DoubleSolenoid climbSolenoid=new DoubleSolenoid(6, 7);
+  //private DoubleSolenoid climbSolenoid=new DoubleSolenoid(6, 7);
 
   public Climber() {
       climbMotor = new Spark(0); 
@@ -28,16 +28,16 @@ public class Climber extends Subsystem {
   @Override
   public void initDefaultCommand() {
     climbMotor.set(0);
-    retractClimb();
+    //retractClimb();
   }
 
-  public void extendClimb(){
-      climbSolenoid.set(DoubleSolenoid.Value.kForward);
-  }
+  // public void extendClimb(){
+  //     climbSolenoid.set(DoubleSolenoid.Value.kForward);
+  // }
 
-  public void retractClimb(){
-      climbSolenoid.set(DoubleSolenoid.Value.kReverse);
-  }
+  // public void retractClimb(){
+  //     climbSolenoid.set(DoubleSolenoid.Value.kReverse);
+  // }
 
   public void climb(double speed) {
     climbMotor.set(speed); 
