@@ -42,7 +42,7 @@ public class OI {
   private Climber climber = new Climber();
   private DriveTrain driveTrain;
   public OI(){
-    driveTrain = Robot.driveTrain;
+
     gamePad1 = new XboxController(0);
     gamePad2 = new XboxController(1);
     buttonA1 = new JoystickButton(gamePad1,1);//Run ingestor inward

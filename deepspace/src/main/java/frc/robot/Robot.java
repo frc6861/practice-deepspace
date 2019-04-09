@@ -38,7 +38,7 @@ public class Robot extends TimedRobot {
     public static DigitalInput topLimitSwitch;
     public static DigitalInput bottomLimitSwitch;
     public static DigitalInput climbLimitSwitch;
-    public static DriveTrain driveTrain;
+    private DriveTrain driveTrain;
 
     /**
      * This function is run when the robot is first started up and should be used
@@ -48,10 +48,11 @@ public class Robot extends TimedRobot {
     public void robotInit() {
         topLimitSwitch = new DigitalInput(1);
         bottomLimitSwitch = new DigitalInput(0);
-        climbLimitSwitch = new DigitalInput(3);
-        m_oi = new OI();
+       // climbLimitSwitch = new DigitalInput(3);
+       m_oi = new OI();
         m_oi.init();
-        driveTrain = new DriveTrain(m_oi);
+       driveTrain = new DriveTrain(m_oi);
+        
         //climber = new Climber();
         //setDriveTrain(new DriveTrain(m_oi));
         CameraServer.getInstance().startAutomaticCapture(0);
@@ -63,6 +64,15 @@ public class Robot extends TimedRobot {
 
 
 	/**
+     * @return the driveTrain
+     */
+    public DriveTrain getDriveTrain() {
+        return driveTrain;
+    }
+
+   
+
+    /**
      * This function is called every robot packet, no matter the mode. Use this for
      * items like diagnostics that you want ran during disabled, autonomous,
      * teleoperated and test.
