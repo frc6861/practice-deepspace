@@ -7,38 +7,34 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.command.TimedCommand;
-import frc.robot.Robot;
+import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.Ingestor;
 
-public class RunClimbMotor extends TimedCommand {
-    private double climberSpeed;
-    private DigitalInput climbSwitch;
+public class RunClimbMotor extends Command {
+    private double speed;
     private Climber climber;
 
-    public RunClimbMotor(double RCMtimeout,double climberSpeed, Climber climber) {
-        super(RCMtimeout);
+    public RunClimbMotor(Climber climber,double speed) {
         this.climber = climber;
-        this.climberSpeed=climberSpeed;
-        climbSwitch = Robot.climbLimitSwitch;
+
+        //System.out.println("MESSAGE   " + ingestor.toString());
+        requires(climber);
+        this.speed = speed;
+
 
     }
 
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
+        climber.climb(speed);
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        while(climbSwitch.get()==false){
-        climber.climb(climberSpeed);
-        }
-        while(climbSwitch.get()==true){
-            climber.climb(climberSpeed);
-        }
+        climber.climb(speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -50,6 +46,7 @@ public class RunClimbMotor extends TimedCommand {
     // Called once after isFinished returns true
     @Override
     protected void end() {
+        //ingestor.driveMotors(0);
 
     }
 

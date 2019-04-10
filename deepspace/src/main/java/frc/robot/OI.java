@@ -26,6 +26,7 @@ import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.HatchPusher;
 import frc.robot.subsystems.Ingestor;
 import frc.robot.commands.PositionElevator;
+import frc.robot.commands.RunClimbMotor;
 
 /**
  * Add your docs here.
@@ -145,15 +146,22 @@ public class OI {
     //buttonB2.whenPressed(new PositionElevator(Robot.elevator, ElevatorPosition.BALLCARGOSHIP));
     //buttonRB2.whenPressed(new PositionElevator(Robot.elevator, ElevatorPosition.BALLMIDROCKETSHIP));
     //buttonRT2.whileActive(new PositionElevator(Robot.elevator, ElevatorPosition.BALLTOPROCKETSHIP));
-    buttonLB2.whenPressed(new MoveClimber(this, -0.85, climber));
-    buttonRB2.whenPressed(new MoveClimber(this, 0.85,climber));
+    
+    /*buttonLB2.whenPressed(new MoveClimber(this, -0.85, climber));
+    buttonRB2.whenPressed(new MoveClimber(this, 0.85,climber));*/
+
     //buttonB2.whenPressed(new MoveClimber(this, 0, climber));
 
-    buttonLB2.whenReleased(new MoveClimber(this, 0, climber));
-    buttonRB2.whenReleased(new MoveClimber(this, 0,climber));
+    /*buttonLB2.whenReleased(new MoveClimber(this, 0, climber));
+    buttonRB2.whenReleased(new MoveClimber(this, 0,climber));*/
 
 
    // buttonB2.whenPressed(new ClimbSequence(4, 0.3, climber));
+
+   buttonLB2.whenPressed(new RunClimbMotor(climber,-0.85)); //run ingestor inward
+   buttonRB2.whenPressed(new RunClimbMotor(climber,0.85)); //run ingestor outward
+   buttonLB2.whenReleased(new RunClimbMotor(climber,0));
+   buttonRB2.whenReleased(new RunClimbMotor(climber,0));
 
     buttonBack2.whenPressed(new HatchUp(hatch, 0.25)); //deploy hatch 
     buttonStart2.whenPressed(new HatchUp(hatch, -0.25)); //shoot ball   */

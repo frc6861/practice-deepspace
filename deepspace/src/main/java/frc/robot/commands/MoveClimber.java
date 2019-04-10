@@ -27,7 +27,8 @@ public class MoveClimber extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-        System.out.print("Initializing Drive Command");
+        //System.out.print("Initializing Drive Command");
+        climber.climb(speed);
     }
 
     // Called repeatedly when this Command is scheduled to run
